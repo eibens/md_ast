@@ -11,7 +11,7 @@ This is **bold** text.
 const parsedJson = JSON.stringify(parsed, null, 2);
 console.log(parsedJson);
 
-// Alternatively, you can use `md` to build a markdown AST manually. It is slightly easier than just using raw definitions. For example, the `type` and `children` array are provided as positional arguments, and you raw strings are automatically wrapped into `Node<"text">` nodes.
+// Alternatively, you can use `md` to build a markdown AST manually. It is slightly easier than using plain old objects. For example, the `type` and `children` array are provided as positional arguments, and raw strings are automatically wrapped into `Node<"text">` nodes.
 const manual = md("document", {}, [
   md("heading", { level: 1, content: "Title" }, [
     "Title",
@@ -39,6 +39,6 @@ try {
     "ERROR: This is very unexpected. Inline HTML should not yet work.",
   );
   Deno.exit(1);
-} catch (error) {
+} catch (_) {
   // This is expected!
 }
