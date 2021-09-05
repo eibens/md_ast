@@ -19,7 +19,7 @@ type Lang = {
   heading: Children & Text & {
     level: number;
   };
-  hr: {};
+  hr: Record<string, never>;
   list: Children & {
     ordered?: boolean;
   };
@@ -36,7 +36,7 @@ type Lang = {
   strong: Children;
   em: Children;
   codespan: Text;
-  br: {};
+  br: Record<string, never>;
   del: Children;
   link: Children & {
     href: string;
@@ -60,14 +60,14 @@ type Text = {
 
 /**
  * Nominal type of a markdown AST node.
- * 
+ *
  * Examples: `"paragraph"`, `"heading"`, `"em"`
  */
 export type Type = keyof Lang;
 
 /**
  * Data carried by a markdown AST node.
- * 
+ *
  * Example: `Opts<"heading">` is the data of the `"heading"` type.
  */
 export type Opts<T extends Type> = Lang[T];
@@ -97,8 +97,8 @@ export function md<T extends Type>(
 }
 
 /**
- * Convert raw markdown into a JSON compatible AST. 
- * @returns 
+ * Convert raw markdown into a JSON compatible AST.
+ * @returns
  */
 export function parse(markdown: string, options: {
   gfm?: boolean;
